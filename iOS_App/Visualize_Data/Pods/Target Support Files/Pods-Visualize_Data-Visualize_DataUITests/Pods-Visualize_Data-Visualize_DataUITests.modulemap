@@ -1,0 +1,6 @@
+framework module Pods_Visualize_Data_Visualize_DataUITests {
+  umbrella header "Pods-Visualize_Data-Visualize_DataUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
