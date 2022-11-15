@@ -178,7 +178,7 @@ app.post("/api/leader/:id/projectInfo", (req, res) => {
                         leader: req.params.id,
             })
             .then(function(docRef) {
-                console.log("Document written with ID: ", docRef.id);
+                return docRef.id;
             });
             return res.status(200).send({status: "Success", msg: "Project saved"});
         } catch (error) {
@@ -187,6 +187,23 @@ app.post("/api/leader/:id/projectInfo", (req, res) => {
         }
     })();
 });
+
+// get project information
+app.get("/api/leader/:id/:projectId", (req, res) => {
+    (async ()=>{
+        try{
+            const repDoc = await db.collection("projects").doc(req.params.projectId);
+            const projectDetail = await repDoc.get();
+            const response = projectDetail.data();
+            return res.status(200).send({status: "Success", data: response});
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send({status: "Failed", msg: error});
+        }
+    })();
+});
+
+//get list of 
 // get -> get()
 app.get("/api/get/:id", (req, res) => {
     (async ()=>{
